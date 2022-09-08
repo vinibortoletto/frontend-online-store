@@ -15,6 +15,9 @@ class App extends React.Component {
   }
 
   render() {
+    const { categories } = this.state;
+    console.log(categories);
+
     return (
       <div className="App">
         <header className="App-header">
