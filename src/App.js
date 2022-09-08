@@ -19,12 +19,12 @@ class App extends React.Component {
     console.log(categories);
 
     return (
-    <BrowserRouter>
-      <Switch>
-        <Route exect path="/" component={ Home } />
-      </Switch>
-    </BrowserRouter>
-  );
+      <BrowserRouter>
+        <Switch>
+          <Route exect path="/" component={ Home } />
+        </Switch>
+      </BrowserRouter>
+    );
   }
 }
 
