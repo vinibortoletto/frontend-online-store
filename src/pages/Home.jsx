@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categories from '../components/Categories';
 
 class Home extends Component {
   state = {
@@ -14,6 +15,7 @@ class Home extends Component {
       <div>
         { validationInitialMessage
         && (<h2 data-testid="home-initial-message">{ initialMessage }</h2>) }
+        <Categories />
       </div>
     );
   }
