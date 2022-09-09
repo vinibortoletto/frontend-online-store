@@ -7,7 +7,7 @@ export default class Header extends Component {
       <header>
         <button type="button">
           <Link
-            to="/shoppingcart"
+            to="/shopping-cart"
             data-testid="shopping-cart-button"
           >
             <span> Carrinho de compras </span>
