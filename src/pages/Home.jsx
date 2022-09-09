@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Categories from '../components/Categories';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
@@ -24,6 +26,7 @@ class Home extends Component {
 
   render() {
     const { dataProduct } = this.state;
+    const { addToCart } = this.props;
     const validation = dataProduct.length === 0;
     const initialMessage = 'Digite algum termo de pesquisa ou escolha uma categoria.';
 
@@ -42,7 +45,7 @@ class Home extends Component {
         <button
           type="button"
           data-testid="query-button"
-          onClick={ this.handleClick }
+          onClick={ this.searchProducts }
         >
           Pesquisar
         </button>
@@ -54,6 +57,13 @@ class Home extends Component {
           <h2>{product.title}</h2>
           <img src={ product.thumbnail } alt={ product.title } />
           <h4>{product.price}</h4>
+          <button
+            type="button"
+            onClick={ () => addToCart(product) }
+            data-testid="product-add-to-cart"
+          >
+            <span>Adicionar ao carrinho</span>
+          </button>
         </li>
       ))
     );
@@ -70,5 +80,9 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default Home;
