@@ -18,14 +18,14 @@ export default class Categories extends Component {
     const { searchProducts } = this.props;
     return (
       <ul>
-        { categories.map((category) => (
-          <li key={ category.id }>
+        { categories.map(({ id, name }) => (
+          <li key={ id }>
             <button
               data-testid="category"
-              onClick={ searchProducts }
+              onClick={ () => searchProducts(id) }
               type="button"
             >
-              { category.name }
+              { name }
             </button>
           </li>
         )) }

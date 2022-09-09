@@ -42,7 +42,7 @@ class Home extends Component {
         <button
           type="button"
           data-testid="query-button"
-          onClick={ this.handleClick }
+          onClick={ this.searchProducts }
         >
           Pesquisar
         </button>
