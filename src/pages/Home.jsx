@@ -6,7 +6,6 @@ class Home extends Component {
   state = {
     inputText: '',
     dataProduct: [],
-    category: '',
   };
 
   handleChange = ({ target: { value } }) => {
@@ -15,10 +14,9 @@ class Home extends Component {
     });
   };
 
-  handleClick = async () => {
-    const { inputText, category } = this.state;
-    const result = await getProductsFromCategoryAndQuery(category, inputText);
-    console.log(result);
+  searchProducts = async (categoryId) => {
+    const { inputText } = this.state;
+    const result = await getProductsFromCategoryAndQuery(categoryId, inputText);
     this.setState({
       dataProduct: result.results,
     });
@@ -65,7 +63,7 @@ class Home extends Component {
         { form }
         { validation
         && (<h2 data-testid="home-initial-message">{ initialMessage }</h2>) }
-        <Categories />
+        <Categories searchProducts={ this.searchProducts } />
         { !validation
           ? (productList) : ('Nenhum produto foi encontrado') }
       </div>
