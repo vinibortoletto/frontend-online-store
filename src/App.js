@@ -26,7 +26,7 @@ class App extends React.Component {
             path="/"
             render={ () => <Home getSelectedProduct={ this.getSelectedProduct } /> }
           />
-          <Route exact path="/shoppingcart" component={ ShoppingCart } />
+          <Route exact path="/shopping-cart" component={ ShoppingCart } />
           <Route
             exact
             path="/product-details"
