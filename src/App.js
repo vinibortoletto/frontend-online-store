@@ -1,19 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './pages/Home';
 import Header from './components/Header';
-import ShoppingCart from './page/ShoppingCart';
+import ShoppingCart from './pages/ShoppingCart';
 
 class App extends React.Component {
   render() {
-     return (
-       <BrowserRouter>
-         <Header />
-         <Switch>
-           <Route exact path="/" component={ Home } />
-           <Route exact path="/shoppingcart" component={ ShoppingCart } />
-         </Switch>
-       </BrowserRouter>
+    return (
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={ Home } />
+          <Route exact path="/shoppingcart" component={ ShoppingCart } />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
