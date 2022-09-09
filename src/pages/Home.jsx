@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
@@ -26,7 +26,7 @@ class Home extends Component {
 
   render() {
     const { dataProduct } = this.state;
-    const { addToCart } = this.props;
+    const { addToCart, getSelectedProduct } = this.props;
     const validation = dataProduct.length === 0;
     const initialMessage = 'Digite algum termo de pesquisa ou escolha uma categoria.';
 
@@ -52,11 +52,17 @@ class Home extends Component {
       </div>
     );
     const productList = (
-      dataProduct.map((product, index) => (
-        <li key={ index } data-testid="product">
-          <h2>{product.title}</h2>
-          <img src={ product.thumbnail } alt={ product.title } />
-          <h4>{product.price}</h4>
+      dataProduct.map((product) => (
+        <li key={ product.id } data-testid="product">
+          <Link
+            to="/product-details"
+            data-testid="product-detail-link"
+            onClick={ () => getSelectedProduct(product) }
+          >
+            <h2>{product.title}</h2>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <h4>{product.price}</h4>
+          </Link>
           <button
             type="button"
             onClick={ () => addToCart(product) }
@@ -83,6 +89,7 @@ class Home extends Component {
 
 Home.propTypes = {
   addToCart: PropTypes.func.isRequired,
+  getSelectedProduct: PropTypes.func.isRequired,
 };
 
 export default Home;

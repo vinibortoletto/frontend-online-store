@@ -4,10 +4,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
 import ShoppingCart from './pages/ShoppingCart';
+import ProductDetails from './pages/ProductDetails';
 
 class App extends React.Component {
   state = {
     cartList: [],
+    selectedProduct: {},
+  };
+
+  getSelectedProduct = (product) => {
+    this.setState({ selectedProduct: product });
   };
 
   addToCart = (product) => {
@@ -48,17 +54,26 @@ class App extends React.Component {
   };
 
   render() {
-    const { cartList } = this.state;
+    const { cartList, selectedProduct } = this.state;
+
     return (
       <BrowserRouter>
         <Header />
         <Switch>
           <Route exact path="/">
-            <Home addToCart={ this.addToCart } />
+            <Home
+              addToCart={ this.addToCart }
+              getSelectedProduct={ this.getSelectedProduct }
+            />
           </Route>
-          <Route exact path="/shoppingcart">
+          <Route exact path="/shopping-cart">
             <ShoppingCart cartList={ cartList } />
           </Route>
+          <Route
+            exact
+            path="/product-details"
+            render={ () => <ProductDetails selectedProduct={ selectedProduct } /> }
+          />
         </Switch>
       </BrowserRouter>
     );
