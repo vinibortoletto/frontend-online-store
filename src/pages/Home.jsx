@@ -26,7 +26,7 @@ class Home extends Component {
 
   render() {
     const { dataProduct } = this.state;
-    const { getSelectedProduct } = this.props;
+    const { addToCart, getSelectedProduct } = this.props;
     const validation = dataProduct.length === 0;
     const initialMessage = 'Digite algum termo de pesquisa ou escolha uma categoria.';
 
@@ -63,6 +63,13 @@ class Home extends Component {
             <img src={ product.thumbnail } alt={ product.title } />
             <h4>{product.price}</h4>
           </Link>
+          <button
+            type="button"
+            onClick={ () => addToCart(product) }
+            data-testid="product-add-to-cart"
+          >
+            <span>Adicionar ao carrinho</span>
+          </button>
         </li>
       ))
     );
@@ -81,6 +88,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   getSelectedProduct: PropTypes.func.isRequired,
 };
 
