@@ -36,6 +36,7 @@ class App extends React.Component {
     let newCart = cartList;
 
     const oldProduct = cartList.find((v) => v.id === product.id);
+
     if (oldProduct) {
       const semProduto = cartList.filter((v) => v.id !== product.id);
       newCart = [
@@ -67,11 +68,78 @@ class App extends React.Component {
     localStorage.setItem('cart', JSON.stringify(newCart));
   };
 
+  increaseItens = (valor) => {
+    console.log('incrementa');
+    const { cartList } = this.state;
+
+    let newItem = cartList;
+
+    const product = cartList.find((v) => v.id === valor);
+    const semProduto = cartList.filter((v) => v.id !== valor);
+    console.log(newItem);
+    console.log(semProduto);
+    newItem = [
+      ...semProduto,
+      {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        img: product.thumbnail,
+        qttd: product.qttd + 1,
+      },
+    ];
+
+    this.setState({
+      cartList: newItem,
+    });
+    localStorage.setItem('cart', JSON.stringify(newItem));
+  };
+
+  decreaseItens = (valor) => {
+    console.log('incrementa');
+    const { cartList } = this.state;
+
+    let newItem = cartList;
+
+    const product = cartList.find((v) => v.id === valor);
+    if (product.qttd > 1) {
+      const semProduto = cartList.filter((v) => v.id !== valor);
+      console.log(newItem);
+      console.log(semProduto);
+      newItem = [
+        ...semProduto,
+        {
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          img: product.thumbnail,
+          qttd: product.qttd - 1,
+        },
+      ];
+      this.setState({
+        cartList: newItem,
+      });
+      localStorage.setItem('cart', JSON.stringify(newItem));
+    } else {
+      this.deleteItens(valor);
+    }
+  };
+
+  deleteItens = (valor) => {
+    console.log('deleta');
+    console.log('incrementa');
+    const { cartList } = this.state;
+
+    const semProduto = cartList.filter((v) => v.id !== valor);
+
+    this.setState({
+      cartList: semProduto,
+    });
+    localStorage.setItem('cart', JSON.stringify(semProduto));
+  };
+
   render() {
-    const {
-      cartList,
-      selectedProduct,
-    } = this.state;
+    const { cartList, selectedProduct } = this.state;
 
     return (
       <BrowserRouter>
@@ -84,7 +152,12 @@ class App extends React.Component {
             />
           </Route>
           <Route exact path="/shopping-cart">
-            <ShoppingCart cartList={ cartList } />
+            <ShoppingCart
+              cartList={ cartList }
+              increaseItens={ this.increaseItens }
+              decreaseItens={ this.decreaseItens }
+              deleteItens={ this.deleteItens }
+            />
           </Route>
           <Route
             exact
