@@ -12,6 +12,13 @@ class App extends React.Component {
     selectedProduct: {},
   };
 
+  componentDidMount() {
+    const localCart = JSON.parse(localStorage.getItem('cart'));
+    if (localCart) {
+      this.setState({ cartList: localCart });
+    }
+  }
+
   getSelectedProduct = (product) => {
     this.setState({ selectedProduct: product });
   };
@@ -72,7 +79,10 @@ class App extends React.Component {
           <Route
             exact
             path="/product-details"
-            render={ () => <ProductDetails selectedProduct={ selectedProduct } /> }
+            render={ () => (<ProductDetails
+              selectedProduct={ selectedProduct }
+              addToCart={ this.addToCart }
+            />) }
           />
         </Switch>
       </BrowserRouter>

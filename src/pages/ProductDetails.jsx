@@ -1,17 +1,10 @@
 import React from 'react';
-import { string, number, shape } from 'prop-types';
+import { string, number, shape, func } from 'prop-types';
 
 export default class ProductDetails extends React.Component {
-  addInCart = () => {
-    const { selectedProduct } = this.props;
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const trueCart = (cart) || [];
-    trueCart.push(selectedProduct);
-    localStorage.setItem('cart', JSON.stringify(trueCart));
-  };
-
   render() {
-    const { selectedProduct: { thumbnail, title, price } } = this.props;
+    const { selectedProduct, addToCart } = this.props;
+    const { thumbnail, title, price } = selectedProduct;
 
     return (
       <div>
@@ -21,7 +14,7 @@ export default class ProductDetails extends React.Component {
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
-          onClick={ this.addInCart }
+          onClick={ () => addToCart(selectedProduct) }
         >
           Adicionar ao Carrinho
         </button>
@@ -31,6 +24,7 @@ export default class ProductDetails extends React.Component {
 }
 
 ProductDetails.propTypes = {
+  addToCart: func.isRequired,
   selectedProduct: shape({
     thumbnail: string,
     title: string,

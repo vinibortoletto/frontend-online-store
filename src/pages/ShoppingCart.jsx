@@ -6,7 +6,7 @@ export default class ShoppingCart extends Component {
     const { cartList } = this.props;
     const validationInitialMessage = cartList.length === 0;
     const initialMessage = 'Seu carrinho está vazio';
-    console.log({ cartList });
+    console.log(cartList.length);
     return (
       <div>
         {
