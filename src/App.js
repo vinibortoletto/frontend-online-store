@@ -29,12 +29,14 @@ class App extends React.Component {
     let newCart = cartList;
 
     const oldProduct = cartList.find((v) => v.id === product.id);
+    console.log(oldProduct);
     if (oldProduct) {
       const semProduto = cartList.filter((v) => v.id !== product.id);
+      console.log(semProduto);
       newCart = [
         ...semProduto,
         {
-          product: product.id,
+          id: product.id,
           title: product.title,
           price: product.price,
           img: product.thumbnail,
@@ -55,7 +57,7 @@ class App extends React.Component {
     }
 
     this.setState({
-      cartList: newCart,
+      cartList: [...newCart],
     });
     localStorage.setItem('cart', JSON.stringify(newCart));
   };
