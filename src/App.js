@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Header from './components/Header';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import { getProductById } from './services/api';
 
 class App extends React.Component {
   state = {
@@ -19,6 +20,12 @@ class App extends React.Component {
     }
   }
 
+  fetchSelectedProduct = async (productId) => {
+    const selectedProduct = await getProductById(productId);
+    this.setState({ selectedProduct });
+    return selectedProduct;
+  };
+
   getSelectedProduct = (product) => {
     this.setState({ selectedProduct: product });
   };
@@ -29,10 +36,8 @@ class App extends React.Component {
     let newCart = cartList;
 
     const oldProduct = cartList.find((v) => v.id === product.id);
-    console.log(oldProduct);
     if (oldProduct) {
       const semProduto = cartList.filter((v) => v.id !== product.id);
-      console.log(semProduto);
       newCart = [
         ...semProduto,
         {
@@ -63,7 +68,10 @@ class App extends React.Component {
   };
 
   render() {
-    const { cartList, selectedProduct } = this.state;
+    const {
+      cartList,
+      selectedProduct,
+    } = this.state;
 
     return (
       <BrowserRouter>
@@ -80,10 +88,12 @@ class App extends React.Component {
           </Route>
           <Route
             exact
-            path="/product-details"
-            render={ () => (<ProductDetails
+            path="/product-details/:productId"
+            render={ (props) => (<ProductDetails
+              { ...props }
               selectedProduct={ selectedProduct }
               addToCart={ this.addToCart }
+              fetchSelectedProduct={ this.fetchSelectedProduct }
             />) }
           />
         </Switch>

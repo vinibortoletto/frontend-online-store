@@ -55,7 +55,7 @@ class Home extends Component {
       dataProduct.map((product) => (
         <li key={ product.id } data-testid="product">
           <Link
-            to="/product-details"
+            to={ `/product-details/${product.id}` }
             data-testid="product-detail-link"
             onClick={ () => getSelectedProduct(product) }
           >
