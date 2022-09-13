@@ -6,6 +6,7 @@ import Header from './components/Header';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
 import { getProductById } from './services/api';
+import Checkout from './pages/Checkout';
 
 class App extends React.Component {
   state = {
@@ -69,15 +70,12 @@ class App extends React.Component {
   };
 
   increaseItens = (valor) => {
-    console.log('incrementa');
     const { cartList } = this.state;
 
     let newItem = cartList;
 
     const product = cartList.find((v) => v.id === valor);
     const semProduto = cartList.filter((v) => v.id !== valor);
-    console.log(newItem);
-    console.log(semProduto);
     newItem = [
       ...semProduto,
       {
@@ -96,7 +94,6 @@ class App extends React.Component {
   };
 
   decreaseItens = (valor) => {
-    console.log('incrementa');
     const { cartList } = this.state;
 
     let newItem = cartList;
@@ -104,8 +101,6 @@ class App extends React.Component {
     const product = cartList.find((v) => v.id === valor);
     if (product.qttd > 1) {
       const semProduto = cartList.filter((v) => v.id !== valor);
-      console.log(newItem);
-      console.log(semProduto);
       newItem = [
         ...semProduto,
         {
@@ -126,8 +121,6 @@ class App extends React.Component {
   };
 
   deleteItens = (valor) => {
-    console.log('deleta');
-    console.log('incrementa');
     const { cartList } = this.state;
 
     const semProduto = cartList.filter((v) => v.id !== valor);
@@ -168,6 +161,11 @@ class App extends React.Component {
               addToCart={ this.addToCart }
               fetchSelectedProduct={ this.fetchSelectedProduct }
             />) }
+          />
+          <Route
+            exact
+            path="/checkout"
+            render={ (props) => <Checkout { ...props } cartList={ cartList } /> }
           />
         </Switch>
       </BrowserRouter>
