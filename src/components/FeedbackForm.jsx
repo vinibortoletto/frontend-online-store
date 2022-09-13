@@ -10,11 +10,8 @@ export default class FeedbackForm extends React.Component {
   };
 
   handleChange = ({ target }) => {
-    if (target.type === 'radio') {
-      this.setState({ [target.name]: target.id });
-    } else {
-      this.setState({ [target.name]: target.value });
-    }
+    const { type, name, id, value } = target;
+    this.setState({ [name]: type === 'radio' ? id : value });
   };
 
   handleSubmit = (event) => {
