@@ -37,7 +37,6 @@ class App extends React.Component {
     let newCart = cartList;
 
     const oldProduct = cartList.find((v) => v.id === product.id);
-
     if (oldProduct) {
       const semProduto = cartList.filter((v) => v.id !== product.id);
       newCart = [
@@ -48,6 +47,7 @@ class App extends React.Component {
           price: product.price,
           img: product.thumbnail,
           qttd: oldProduct.qttd + 1,
+          availableQttd: product.available_quantity,
         },
       ];
     } else {
@@ -59,6 +59,7 @@ class App extends React.Component {
           price: product.price,
           img: product.thumbnail,
           qttd: 1,
+          availableQttd: product.available_quantity,
         },
       ];
     }
@@ -69,21 +70,30 @@ class App extends React.Component {
     localStorage.setItem('cart', JSON.stringify(newCart));
   };
 
-  increaseItens = (valor) => {
+  increaseItens = async (valor) => {
     const { cartList } = this.state;
 
     let newItem = cartList;
 
-    const product = cartList.find((v) => v.id === valor);
+    const {
+      id,
+      title,
+      price,
+      thumbnail,
+      qttd,
+      availableQttd,
+    } = cartList.find((v) => v.id === valor);
     const semProduto = cartList.filter((v) => v.id !== valor);
+
     newItem = [
       ...semProduto,
       {
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        img: product.thumbnail,
-        qttd: product.qttd + 1,
+        id,
+        title,
+        price,
+        img: thumbnail,
+        qttd: (qttd + 1 <= availableQttd) ? qttd + 1 : qttd,
+        availableQttd,
       },
     ];
 
@@ -109,6 +119,7 @@ class App extends React.Component {
           price: product.price,
           img: product.thumbnail,
           qttd: product.qttd - 1,
+          availableQttd: product.availableQttd,
         },
       ];
       this.setState({
@@ -136,7 +147,7 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <Header />
+        <Header cartList={ cartList } />
         <Switch>
           <Route exact path="/">
             <Home
