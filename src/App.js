@@ -148,6 +148,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Header cartList={ cartList } />
+
         <Switch>
           <Route exact path="/">
             <Home

@@ -31,15 +31,16 @@ class Home extends Component {
     const initialMessage = 'Digite algum termo de pesquisa ou escolha uma categoria.';
 
     const form = (
-      <div>
+      <div className="flex justify-center">
         <label htmlFor="name">
           <input
             type="text"
             name="name"
-            id=""
+            id="name"
             data-testid="query-input"
             placeholder="Digite seu produto"
             onChange={ this.handleChange }
+            className="border p-2"
           />
         </label>
         <button
