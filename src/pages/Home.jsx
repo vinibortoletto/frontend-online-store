@@ -47,6 +47,7 @@ class Home extends Component {
           type="button"
           data-testid="query-button"
           onClick={ this.searchProducts }
+          // className='bg-blue-'
         >
           Pesquisar
         </button>

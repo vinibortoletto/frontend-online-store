@@ -146,41 +146,39 @@ class App extends React.Component {
     const { cartList, selectedProduct } = this.state;
 
     return (
-      <BrowserRouter>
+      <>
         <Header cartList={ cartList } />
 
-        <Switch>
-          <Route exact path="/">
-            <Home
-              addToCart={ this.addToCart }
-              getSelectedProduct={ this.getSelectedProduct }
-            />
-          </Route>
-          <Route exact path="/shopping-cart">
-            <ShoppingCart
-              cartList={ cartList }
-              increaseItens={ this.increaseItens }
-              decreaseItens={ this.decreaseItens }
-              deleteItens={ this.deleteItens }
-            />
-          </Route>
-          <Route
-            exact
-            path="/product-details/:productId"
-            render={ (props) => (<ProductDetails
-              { ...props }
-              selectedProduct={ selectedProduct }
-              addToCart={ this.addToCart }
-              fetchSelectedProduct={ this.fetchSelectedProduct }
-            />) }
+        <Route exact path="/">
+          <Home
+            addToCart={ this.addToCart }
+            getSelectedProduct={ this.getSelectedProduct }
           />
-          <Route
-            exact
-            path="/checkout"
-            render={ (props) => <Checkout { ...props } cartList={ cartList } /> }
+        </Route>
+        <Route exact path="/shopping-cart">
+          <ShoppingCart
+            cartList={ cartList }
+            increaseItens={ this.increaseItens }
+            decreaseItens={ this.decreaseItens }
+            deleteItens={ this.deleteItens }
           />
-        </Switch>
-      </BrowserRouter>
+        </Route>
+        <Route
+          exact
+          path="/product-details/:productId"
+          render={ (props) => (<ProductDetails
+            { ...props }
+            selectedProduct={ selectedProduct }
+            addToCart={ this.addToCart }
+            fetchSelectedProduct={ this.fetchSelectedProduct }
+          />) }
+        />
+        <Route
+          exact
+          path="/checkout"
+          render={ (props) => <Checkout { ...props } cartList={ cartList } /> }
+        />
+      </>
     );
   }
 }
