@@ -31,8 +31,8 @@ class Home extends Component {
     const initialMessage = 'Digite algum termo de pesquisa ou escolha uma categoria.';
 
     const form = (
-      <div className="flex justify-center">
-        <label htmlFor="name">
+      <div className="flex justify-center mb-2 w-full px-4">
+        <label htmlFor="name" className="w-full max-w-md">
           <input
             type="text"
             name="name"
@@ -40,19 +40,20 @@ class Home extends Component {
             data-testid="query-input"
             placeholder="Digite seu produto"
             onChange={ this.handleChange }
-            className="border p-2"
+            className="border p-2 w-full"
           />
         </label>
         <button
           type="button"
           data-testid="query-button"
           onClick={ this.searchProducts }
-          // className='bg-blue-'
+          className="bg-blue-700 text-slate-100 font-bold rounded p-2 ml-2"
         >
           Pesquisar
         </button>
       </div>
     );
+
     const productList = (
       dataProduct.map((product) => (
         <li key={ product.id } data-testid="product">
