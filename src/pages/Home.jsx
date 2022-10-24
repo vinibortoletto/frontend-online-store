@@ -8,6 +8,7 @@ class Home extends Component {
   state = {
     inputText: '',
     dataProduct: [],
+    isLoading: false,
   };
 
   handleChange = ({ target: { value } }) => {
@@ -18,14 +19,22 @@ class Home extends Component {
 
   searchProducts = async (categoryId) => {
     const { inputText } = this.state;
-    const result = await getProductsFromCategoryAndQuery(categoryId, inputText);
-    this.setState({
-      dataProduct: result.results,
-    });
+    this.setState(
+      {
+        isLoading: true,
+      },
+      async () => {
+        const result = await getProductsFromCategoryAndQuery(categoryId, inputText);
+        this.setState({
+          dataProduct: result.results,
+          isLoading: false,
+        });
+      },
+    );
   };
 
   render() {
-    const { dataProduct } = this.state;
+    const { dataProduct, isLoading } = this.state;
     const { addToCart, getSelectedProduct } = this.props;
     const validation = dataProduct.length === 0;
     const initialMessage = 'Digite algum termo de pesquisa ou escolha uma categoria.';
@@ -46,8 +55,8 @@ class Home extends Component {
         <button
           type="button"
           data-testid="query-button"
+          className="bg-teal-400 text-slate-100 font-bold rounded p-2 ml-2"
           onClick={ this.searchProducts }
-          className="bg-blue-700 text-slate-100 font-bold rounded p-2 ml-2"
         >
           Pesquisar
         </button>
@@ -85,12 +94,20 @@ class Home extends Component {
 
     return (
       <div>
+
         { form }
-        { validation
-        && (<h2 data-testid="home-initial-message">{ initialMessage }</h2>) }
+        { validation && (
+          <h2 data-testid="home-initial-message">{ initialMessage }</h2>
+        )}
+
         <Categories searchProducts={ this.searchProducts } />
-        { !validation
-          ? (productList) : ('Nenhum produto foi encontrado') }
+
+        {isLoading && 'Loading...'}
+
+        { !validation && !isLoading
+          ? (productList)
+          : ('Nenhum produto foi encontrado')}
+
       </div>
     );
   }
