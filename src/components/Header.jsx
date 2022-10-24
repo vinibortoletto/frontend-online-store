@@ -24,7 +24,7 @@ export default class Header extends Component {
   render() {
     return (
       <header
-        className="bg-blue-700 py-4 px-6 mb-4"
+        className="bg-blue-700 py-4 px-6"
       >
         <div className="max-w-5xl flex justify-between items-center m-auto">
           <div>

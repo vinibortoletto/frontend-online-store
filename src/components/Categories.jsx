@@ -26,9 +26,11 @@ export default class Categories extends Component {
     return (
       <div
         className="shadow-2xl w-64 bg-white rounded-sm
-          absolute -left-[65%] hover:left-0 transition-all
-          "
+          absolute -left-56 hover:left-0 transition-all z-10
+          lg:left-0 lg:top-0 lg:bottom-0"
       >
+
+        <h2 className="font-bold text-lg text-center mt-10">Categorias</h2>
         <ul className="flex flex-col gap-2 p-4">
           { categories.map(({ id, name }) => (
             <li key={ id }>
@@ -56,17 +58,3 @@ export default class Categories extends Component {
 Categories.propTypes = {
   searchProducts: PropTypes.func.isRequired,
 };
-
-// <label htmlFor="category">
-//               <input
-//                 type="radio"
-//                 id="category"
-//                 name="category"
-//                 data-testid="category"
-//                 value={ name }
-//                 checked={ checkedValue === name }
-//                 onChange={ (event) => this.handleChange(event, id) }
-//                 className=""
-//               />
-//               { name }
-//             </label>
