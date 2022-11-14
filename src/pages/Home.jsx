@@ -5,6 +5,7 @@ import Categories from '../components/Categories';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import SearchProductsForm from '../components/SearchProducts';
 import ProductList from '../components/ProductList';
+import Loading from '../components/Loading';
 
 class Home extends Component {
   state = {
@@ -52,21 +53,23 @@ class Home extends Component {
               searchProducts={ this.searchProducts }
             />
 
-            {isLoading && 'Loading...'}
-
-            <div className="lg:p-10 lg:ml-64 flex justify-center">
-              { !validation && !isLoading
-                ? (
-                  <ProductList
-                    dataProduct={ dataProduct }
-                    getSelectedProduct={ getSelectedProduct }
-                    addToCart={ addToCart }
-                  />
-                )
-                : (
-                  <p className="text-xl mt-10">Nenhum produto foi encontrado</p>
-                )}
-            </div>
+            {isLoading
+              ? <Loading />
+              : (
+                <div className="lg:p-10 lg:ml-64 flex justify-center">
+                  { !validation
+                    ? (
+                      <ProductList
+                        dataProduct={ dataProduct }
+                        getSelectedProduct={ getSelectedProduct }
+                        addToCart={ addToCart }
+                      />
+                    )
+                    : (
+                      <p className="text-xl mt-10">Nenhum produto foi encontrado</p>
+                    )}
+                </div>
+              )}
           </div>
         </div>
       </div>
