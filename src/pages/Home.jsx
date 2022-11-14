@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import SearchProductsForm from '../components/SearchProducts';
 
 class Home extends Component {
   state = {
@@ -17,7 +18,8 @@ class Home extends Component {
     });
   };
 
-  searchProducts = async (categoryId) => {
+  searchProducts = async (event, categoryId) => {
+    event.preventDefault();
     const { inputText } = this.state;
     this.setState(
       {
@@ -37,30 +39,6 @@ class Home extends Component {
     const { dataProduct, isLoading } = this.state;
     const { addToCart, getSelectedProduct } = this.props;
     const validation = dataProduct.length === 0;
-
-    const form = (
-      <div className="flex justify-center mb-2 w-full px-4 ml-32 pt-10">
-        <label htmlFor="name" className="w-full max-w-md">
-          <input
-            type="text"
-            name="name"
-            id="name"
-            data-testid="query-input"
-            placeholder="Digite seu produto"
-            onChange={ this.handleChange }
-            className="border p-2 w-full"
-          />
-        </label>
-        <button
-          type="button"
-          data-testid="query-button"
-          className="bg-teal-400 text-slate-100 font-bold rounded p-2 ml-2"
-          onClick={ this.searchProducts }
-        >
-          Pesquisar
-        </button>
-      </div>
-    );
 
     const productList = (
       <ul
@@ -119,24 +97,28 @@ class Home extends Component {
     );
 
     return (
-      <div>
-
-        {/* <div className="flex"> */}
-        { form }
-
+      <div className="lg:grid lg:grid-cols-2">
         <Categories searchProducts={ this.searchProducts } />
 
-        {isLoading && 'Loading...'}
+        <div className="ml-10">
+          <div className="w-[90%] mx-auto">
 
-        <div className="lg:p-10 ml-64 flex justify-center">
+            <SearchProductsForm
+              handleChange={ this.handleChange }
+              searchProducts={ this.searchProducts }
+            />
 
-          { !validation && !isLoading
-            ? (productList)
-            : (
-              <p className="text-xl mt-10">Nenhum produto foi encontrado</p>
-            )}
+            {isLoading && 'Loading...'}
+
+            <div className="lg:p-10 lg:ml-64 flex justify-center">
+              { !validation && !isLoading
+                ? (productList)
+                : (
+                  <p className="text-xl mt-10">Nenhum produto foi encontrado</p>
+                )}
+            </div>
+          </div>
         </div>
-        {/* </div> */}
       </div>
     );
   }
