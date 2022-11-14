@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import Categories from '../components/Categories';
-import SearchProductsForm from '../components/SearchProducts';
+import SearchProductsForm from '../components/SearchProductsForm';
 import ProductList from '../components/ProductList';
 import Loading from '../components/Loading';
 
