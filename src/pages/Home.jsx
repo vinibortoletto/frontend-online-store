@@ -1,11 +1,15 @@
+// Libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
+// Components
 import Categories from '../components/Categories';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 import SearchProductsForm from '../components/SearchProducts';
 import ProductList from '../components/ProductList';
 import Loading from '../components/Loading';
+
+// API
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
   state = {
