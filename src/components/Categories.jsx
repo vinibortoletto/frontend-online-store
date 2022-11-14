@@ -29,7 +29,7 @@ export default class Categories extends Component {
         overflow-hidden top-0 -left-56 lg:static lg:left-0 hover:left-0
         transition-all z-10"
       >
-        <h2 className="font-bold text-lg text-center mt-10">Categorias</h2>
+        <h2 className="font-bold text-lg text-center">Categorias</h2>
         <ul className="flex flex-col gap-2 p-4 overflow-auto h-screen lg:h-full">
           { categories.map(({ id, name }) => (
             <li key={ id }>

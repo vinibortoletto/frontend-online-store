@@ -6,7 +6,7 @@ export default class SearchProductsForm extends React.Component {
     const { handleChange, searchProducts } = this.props;
 
     return (
-      <div className="max-w-xs mx-auto my-10">
+      <div className="max-w-xs mx-auto mb-10">
         <label htmlFor="name" className="w-full">
           <input
             type="text"
