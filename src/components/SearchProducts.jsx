@@ -6,10 +6,7 @@ export default class SearchProductsForm extends React.Component {
     const { handleChange, searchProducts } = this.props;
 
     return (
-      <form
-        className="max-w-xs mx-auto my-10"
-        onSubmit={ searchProducts }
-      >
+      <div className="max-w-xs mx-auto my-10">
         <label htmlFor="name" className="w-full">
           <input
             type="text"
@@ -23,13 +20,14 @@ export default class SearchProductsForm extends React.Component {
         </label>
 
         <button
-          type="submit"
+          type="button"
           data-testid="query-button"
           className="w-full bg-teal-400 text-slate-100 font-bold rounded p-2"
+          onClick={ searchProducts }
         >
           Pesquisar
         </button>
-      </form>
+      </div>
     );
   }
 }
