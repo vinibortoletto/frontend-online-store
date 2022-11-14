@@ -16,7 +16,7 @@ export default class ProductList extends React.Component {
           <li
             key={ product.id }
             data-testid="product"
-            className="bg-white rounded-sm p-6 text-center relative"
+            className="bg-white rounded-sm p-6 text-center relative shadow"
           >
             <Link
               to={ `/product-details/${product.id}` }
@@ -28,7 +28,7 @@ export default class ProductList extends React.Component {
                 alt={ product.title }
                 className="w-52 mx-auto"
               />
-              <h2 className="font-bold mb-2 truncate text-ellipsis max-w-[150px]">
+              <h2 className="max-w-[200px] font-bold mb-2 truncate text-ellipsis">
                 {product.title}
               </h2>
               <h4 className="font-bold text-blue-600 text-lg">
@@ -38,7 +38,7 @@ export default class ProductList extends React.Component {
 
               {product.shipping.free_shipping && (
                 <h5
-                  className="w-16 rounded-sm bg-blue-600 text-white text-sm p-2
+                  className="rounded-sm bg-blue-600 text-white font-bold text-sm p-2
                     absolute top-4 right-4"
                   data-testid="free-shipping"
                 >
