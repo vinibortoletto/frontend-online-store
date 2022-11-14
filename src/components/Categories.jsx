@@ -25,7 +25,7 @@ export default class Categories extends Component {
 
     return (
       <div
-        className="categories shadow-2xl min-w-[16rem] bg-white rounded-sm fixed
+        className="categories min-w-[16rem] rounded-sm fixed
         overflow-hidden top-0 -left-56 lg:static lg:left-0 hover:left-0
         transition-all z-10"
       >
@@ -42,7 +42,7 @@ export default class Categories extends Component {
                   value={ name }
                   checked={ checkedValue === name }
                   onChange={ (event) => this.handleChange(event, id) }
-                  className=""
+
                 />
                 <span className="ml-2">{ name }</span>
               </label>

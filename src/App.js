@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Header from './components/Header';
@@ -149,7 +149,7 @@ class App extends React.Component {
       <>
         <Header cartList={ cartList } />
 
-        <div className="relative">
+        <div className="relative max-w-7xl mx-auto">
           <Route exact path="/">
             <Home
               addToCart={ this.addToCart }
