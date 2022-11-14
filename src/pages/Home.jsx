@@ -46,11 +46,13 @@ class Home extends Component {
     const validation = dataProduct.length === 0;
 
     return (
-      <div className="lg:grid lg:grid-cols-2">
+      <div
+        className="lg:flex"
+      >
         <Categories searchProducts={ this.searchProducts } />
 
-        <div className="ml-10">
-          <div className="w-[90%] mx-auto">
+        <div className="ml-10 lg:ml-0 lg:w-full">
+          <div className="w-[90%] mx-auto lg:w-full lg:flex lg:flex-col lg:items-center">
 
             <SearchProductsForm
               handleChange={ this.handleChange }
@@ -60,7 +62,7 @@ class Home extends Component {
             {isLoading
               ? <Loading />
               : (
-                <div className="lg:p-10 lg:ml-64 flex justify-center">
+                <div>
                   { !validation
                     ? (
                       <ProductList
@@ -70,7 +72,9 @@ class Home extends Component {
                       />
                     )
                     : (
-                      <p className="text-xl mt-10">Nenhum produto foi encontrado</p>
+                      <p className="text-xl text-center mt-10">
+                        Nenhum produto foi encontrado
+                      </p>
                     )}
                 </div>
               )}
