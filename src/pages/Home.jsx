@@ -18,6 +18,19 @@ class Home extends Component {
     isLoading: false,
   };
 
+  async componentDidMount() {
+    this.setState(
+      { isLoading: true },
+      async () => {
+        const result = await getProductsFromCategoryAndQuery(null, 'notebook');
+        this.setState({
+          dataProduct: result.results,
+          isLoading: false,
+        });
+      },
+    );
+  }
+
   handleChange = ({ target: { value } }) => {
     this.setState({
       inputText: value,
