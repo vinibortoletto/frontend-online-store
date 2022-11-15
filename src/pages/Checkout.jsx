@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import { arrayOf, shape } from 'prop-types';
 
@@ -86,139 +88,188 @@ export default class Checkout extends React.Component {
     } = this.state;
 
     return (
-      <div>
-        {cartList.map(({ id, title, price, qttd }) => (
-          <div key={ id }>
-            <h2>{title}</h2>
-            <p>
-              {`Quantidade: ${qttd}`}
-            </p>
-            <p>
-              {`Preço unitário: ${price}`}
-            </p>
-          </div>
-        ))}
+      <div className="px-4 md:flex md:gap-10 md:max-w-5xl md:mx-auto">
 
-        <h3>{cartTotal}</h3>
+        <ul className="flex flex-col gap-4 text-center md:text-left">
+          {cartList.map(({ id, title, price, qttd }) => (
+            <li
+              key={ id }
+              className="bg-white p-6 shadow grid gap-2 md:h-40"
+            >
+              <h2 className="font-bold">{title}</h2>
+              <p>
+                {`Quantidade: ${qttd}`}
+              </p>
+              <p>
+                {`Preço unitário: R$${price}`}
+              </p>
+            </li>
+          ))}
+        </ul>
 
-        <form onSubmit={ this.handleSubmit }>
+        <form
+          onSubmit={ this.handleSubmit }
+          className="md:w-96 md:mx-auto"
+        >
+          <h3 className="font-bold text-center text-xl mt-10 md:mt-0 mb-4">
+            Informações
+          </h3>
+
           <label htmlFor="fullname">
-            Nome completo:
+            <span className="absolute -left-full">Nome completo:</span>
             <input
               data-testid="checkout-fullname"
               type="text"
               name="fullname"
               value={ fullname }
               onChange={ this.handleChange }
+              placeholder="Nome completo"
+              className="border p-2 w-full mb-2"
             />
           </label>
 
           <label htmlFor="email">
-            Email:
+            <span className="absolute -left-full">Email:</span>
             <input
               data-testid="checkout-email"
               type="email"
               name="email"
               value={ email }
               onChange={ this.handleChange }
+              placeholder="Email"
+              className="border p-2 w-full mb-2"
             />
           </label>
 
           <label htmlFor="cpf">
-            CPF:
+            <span className="absolute -left-full">CPF:</span>
             <input
               data-testid="checkout-cpf"
               type="cpf"
               name="cpf"
               value={ cpf }
               onChange={ this.handleChange }
+              placeholder="CPF"
+              className="border p-2 w-full mb-2"
             />
           </label>
 
           <label htmlFor="phone">
-            Telefone:
+            <span className="absolute -left-full">Telefone:</span>
             <input
               data-testid="checkout-phone"
               type="phone"
               name="phone"
               value={ phone }
               onChange={ this.handleChange }
+              placeholder="Telefone"
+              className="border p-2 w-full mb-2"
             />
           </label>
 
           <label htmlFor="cep">
-            CEP:
+            <span className="absolute -left-full">CEP:</span>
             <input
               data-testid="checkout-cep"
               type="cep"
               name="cep"
               value={ cep }
               onChange={ this.handleChange }
+              placeholder="CEP"
+              className="border p-2 w-full mb-2"
             />
           </label>
 
           <label htmlFor="address">
-            Endereço:
+            <span className="absolute -left-full">Endereço:</span>
             <input
               data-testid="checkout-address"
               type="address"
               name="address"
               value={ address }
               onChange={ this.handleChange }
+              placeholder="Endereço"
+              className="border p-2 w-full mb-2"
             />
           </label>
 
           <div>
-            Método de pagamento:
-            <label htmlFor="ticket">
-              <input
-                type="radio"
-                id="ticket"
-                name="payment"
-                data-testid="ticket-payment"
-                onChange={ this.handleChange }
-              />
-              Boleto
-            </label>
+            <h3 className="font-bold text-center text-xl mt-10 mb-4">
+              Método de pagamento
+            </h3>
 
-            <label htmlFor="visa">
-              <input
-                type="radio"
-                id="visa"
-                name="payment"
-                data-testid="visa-payment"
-                onChange={ this.handleChange }
-              />
-              Visa
-            </label>
+            <div className="flex justify-center gap-2">
+              <label htmlFor="ticket">
+                <input
+                  type="radio"
+                  id="ticket"
+                  name="payment"
+                  data-testid="ticket-payment"
+                  onChange={ this.handleChange }
+                  className="mr-1"
+                />
+                Boleto
+              </label>
 
-            <label htmlFor="master">
-              <input
-                type="radio"
-                id="master"
-                name="payment"
-                data-testid="master-payment"
-                onChange={ this.handleChange }
-              />
-              MasterCard
-            </label>
+              <label htmlFor="visa">
+                <input
+                  type="radio"
+                  id="visa"
+                  name="payment"
+                  data-testid="visa-payment"
+                  onChange={ this.handleChange }
+                  className="mr-1"
+                />
+                Visa
+              </label>
 
-            <label htmlFor="elo">
-              <input
-                type="radio"
-                id="elo"
-                name="payment"
-                data-testid="elo-payment"
-                onChange={ this.handleChange }
-              />
-              Elo
-            </label>
+              <label htmlFor="master">
+                <input
+                  type="radio"
+                  id="master"
+                  name="payment"
+                  data-testid="master-payment"
+                  onChange={ this.handleChange }
+                  className="mr-1"
+                />
+                MasterCard
+              </label>
+
+              <label htmlFor="elo">
+                <input
+                  type="radio"
+                  id="elo"
+                  name="payment"
+                  data-testid="elo-payment"
+                  onChange={ this.handleChange }
+                  className="mr-1"
+                />
+                Elo
+              </label>
+            </div>
           </div>
 
-          <button type="submit" data-testid="checkout-btn">Finalizar</button>
-        </form>
+          <h3 className="font-bold text-3xl text-blue-700 text-center my-10">
+            {`Subtotal: R$${cartTotal}`}
+          </h3>
 
-        {!isValid && (<p data-testid="error-msg">Campos inválidos</p>)}
+          <button
+            type="submit"
+            data-testid="checkout-btn"
+            className="w-full bg-teal-400 text-slate-100 font-bold rounded p-2"
+          >
+            Finalizar
+          </button>
+
+          {!isValid && (
+            <p
+              data-testid="error-msg"
+              className="text-red-700 italic"
+            >
+              Campos inválidos
+            </p>
+          )}
+        </form>
       </div>
     );
   }
