@@ -1,5 +1,6 @@
 import { func, string } from 'prop-types';
 import React from 'react';
+import { FaSearch } from 'react-icons/fa';
 
 export default class SearchProductsForm extends React.Component {
   render() {
@@ -10,7 +11,7 @@ export default class SearchProductsForm extends React.Component {
     } = this.props;
 
     return (
-      <div className="max-w-xs mx-auto mb-10">
+      <div className="w-full max-w-[50rem] mb-10 flex">
         <label htmlFor="name" className="w-full">
           <input
             type="text"
@@ -20,17 +21,17 @@ export default class SearchProductsForm extends React.Component {
             data-testid="query-input"
             placeholder="Digite seu produto"
             onChange={ handleChange }
-            className="border p-2 w-full mb-2"
+            className="border p-2 w-full"
           />
         </label>
 
         <button
           type="button"
           data-testid="query-button"
-          className="w-full bg-teal-400 text-slate-100 font-bold rounded p-2"
+          className="bg-teal-400 text-slate-100 font-bold rounded py-2 px-4"
           onClick={ searchProducts }
         >
-          Pesquisar
+          <FaSearch />
         </button>
       </div>
     );
