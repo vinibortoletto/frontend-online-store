@@ -1,9 +1,13 @@
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 import React from 'react';
 
 export default class SearchProductsForm extends React.Component {
   render() {
-    const { handleChange, searchProducts } = this.props;
+    const {
+      handleChange,
+      searchProducts,
+      inputText,
+    } = this.props;
 
     return (
       <div className="max-w-xs mx-auto mb-10">
@@ -12,6 +16,7 @@ export default class SearchProductsForm extends React.Component {
             type="text"
             name="name"
             id="name"
+            value={ inputText }
             data-testid="query-input"
             placeholder="Digite seu produto"
             onChange={ handleChange }
@@ -35,4 +40,5 @@ export default class SearchProductsForm extends React.Component {
 SearchProductsForm.propTypes = {
   handleChange: func.isRequired,
   searchProducts: func.isRequired,
+  inputText: string.isRequired,
 };

@@ -35,13 +35,14 @@ class Home extends Component {
         this.setState({
           dataProduct: result.results,
           isLoading: false,
+          inputText: '',
         });
       },
     );
   };
 
   render() {
-    const { dataProduct, isLoading } = this.state;
+    const { dataProduct, isLoading, inputText } = this.state;
     const { addToCart, getSelectedProduct } = this.props;
     const validation = dataProduct.length === 0;
 
@@ -57,6 +58,7 @@ class Home extends Component {
             <SearchProductsForm
               handleChange={ this.handleChange }
               searchProducts={ this.searchProducts }
+              inputText={ inputText }
             />
 
             {isLoading
