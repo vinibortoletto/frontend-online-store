@@ -7,6 +7,7 @@ import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
 import { getProductById } from './services/api';
 import Checkout from './pages/Checkout';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   state = {
@@ -180,6 +181,8 @@ class App extends React.Component {
             render={ (props) => <Checkout { ...props } cartList={ cartList } /> }
           />
         </div>
+
+        <Footer />
       </>
 
     );
