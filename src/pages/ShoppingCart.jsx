@@ -1,6 +1,9 @@
+// Libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
+// Images
 import { FaTrash } from 'react-icons/fa';
 
 export default class ShoppingCart extends Component {

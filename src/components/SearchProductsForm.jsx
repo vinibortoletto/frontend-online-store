@@ -1,5 +1,8 @@
+// Libs
 import { func, string } from 'prop-types';
 import React from 'react';
+
+// Images
 import { FaSearch } from 'react-icons/fa';
 
 export default class SearchProductsForm extends React.Component {

@@ -1,13 +1,15 @@
+// Libs
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { getProductById } from './services/api';
 
-import Home from './pages/Home';
+// Components
 import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
-import { getProductById } from './services/api';
 import Checkout from './pages/Checkout';
-import Footer from './components/Footer';
 
 class App extends React.Component {
   state = {

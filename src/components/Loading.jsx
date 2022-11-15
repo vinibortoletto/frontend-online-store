@@ -1,4 +1,7 @@
+// Libs
 import React from 'react';
+
+// Images
 import loadingGif from '../assets/loading.webp';
 
 export default class Loading extends React.Component {

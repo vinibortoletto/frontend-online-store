@@ -1,7 +1,12 @@
+// Libs
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+
+// Components
 import CartButton from './CartButton';
+
+// Images
+import logo from '../assets/logo.png';
 
 export default class Header extends Component {
   componentDidMount() {

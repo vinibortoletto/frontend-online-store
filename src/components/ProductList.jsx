@@ -1,5 +1,6 @@
-import { arrayOf, func, shape } from 'prop-types';
+// Libs
 import React from 'react';
+import { arrayOf, func, shape } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default class ProductList extends React.Component {

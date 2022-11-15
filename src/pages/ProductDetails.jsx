@@ -1,5 +1,8 @@
+// Libs
 import React from 'react';
 import { string, number, shape, func } from 'prop-types';
+
+// Components
 import FeedbackForm from '../components/FeedbackForm';
 import Feedback from '../components/Feedback';
 import Loading from '../components/Loading';
